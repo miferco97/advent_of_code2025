@@ -62,7 +62,7 @@ if __name__ == "__main__":
             final_number = final_number + new_char
             number=rest
 
-        print(f'{final_number=}')
+        # print(f'{final_number=}')
         code += int(final_number)
 
     print(f'Part2 {code=}')
