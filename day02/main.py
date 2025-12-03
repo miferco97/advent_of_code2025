@@ -29,7 +29,52 @@ if __name__ == "__main__":
     code=sum(ids)
             
     print(f'Part1 {code=}')
-    # print(f'Part2 {code=}')
+    # part 2 
+
+    ids = []
+    value=0
+
+    def get_dividers(n_chars):
+        dividers=[]
+        for i in range(1,n_chars):
+            if n_chars % i == 0:
+                dividers.append(i)
+        return dividers
+    
+    def get_substrings(number,n_char):
+        substrings = []
+        string = str(number)
+        for i in range (len(string)//n_char): 
+            begin_index = i * n_char
+            end_index= begin_index + n_char
+            substrings.append(string[begin_index:end_index])
+        return substrings
+
+    def check_repetition(number, n_chars) -> bool:
+        substrings = get_substrings(elem, divider)
+        if len(substrings) < 2:
+            return False 
+        # print(f'{elem=},{divider=},{substrings=}')
+        ref = substrings[0]
+        for pattern in substrings[1:]:
+            if pattern != ref:
+                return False
+        return True
+
+
+    for orig,end in input_data:
+        for elem in range(int(orig),int(end)+1):
+            n_chars = len(str(elem))
+            for divider in get_dividers(n_chars):
+                if check_repetition(elem,n_chars):
+                    # print(f'Repetition within {elem=}')
+                    ids.append(elem)
+                    break # to avoid counting the same number multiple times
+
+    code=sum(ids)
+
+    print(f'Part2 {code=}')
+
         
 
 
