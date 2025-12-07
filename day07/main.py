@@ -8,7 +8,7 @@ def read_input(file_path):
         data=[]
         for line in lines:
             data.append([char for char in line])
-        return data.copy()
+        return data
 
 
 class CharMatrix():
@@ -16,7 +16,7 @@ class CharMatrix():
     def __init__(self, data):
         self.n_rows = len(data)
         self.n_cols = len(data[0])
-        self.data=data
+        self.data=deepcopy(data)
     
     def __str__(self):
         out=''
@@ -128,19 +128,15 @@ if __name__ == "__main__":
     # part 1 
     filename='inputs/input.txt'
 
-    # input_data = read_input('inputs/input.txt')
     input_data = read_input(filename)
     matrix = CharMatrix(input_data.copy())
     code =  propagate_tree(matrix)
     print(f'Part1 {code=}')
         
     # part 2 
-    input_data = read_input(filename)
-    matrix2 = CharMatrix(input_data)
-    matrix2 = numberize_matrix(matrix2)
-    code = propagate_matrix(matrix2)
-    code = sum(matrix2.row(matrix2.n_rows-1))
+    matrix = CharMatrix(input_data)
+    matrix = numberize_matrix(matrix)
+    code = propagate_matrix(matrix)
+    code = sum(matrix.row(matrix.n_rows-1))
 
-    
-    
     print(f'Part2 {code=}')
